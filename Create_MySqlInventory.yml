@@ -1,0 +1,37 @@
+---
+
+- hosts: localhost
+  remote_user: root
+  tasks:
+
+    - name: Extract Master1 IP
+      shell: sed -n '1p' /tmp/INV
+      register: master1Ip
+
+    - name: Set Master1 IP
+      set_fact:
+        master1: "{{ master1Ip.stdout }}"
+
+    - name: Extract Master2 IP
+      shell: sed -n '2p' /tmp/INV
+      register: master2Ip
+
+    - name: Set Master2 IP
+      set_fact:
+        master2: "{{ master2Ip.stdout }}"
+
+    - name: Extract Slave IP
+      shell: sed -n '3p' /tmp/INV ; rm -rf /tmp/INV
+      register: slaveIp
+
+    - name: Set Slave IP
+      set_fact:
+        slave: "{{ slaveIp.stdout }}"
+
+    - name: Create Inventory
+      template:
+        src: templates/inv
+        dest: /tmp/inventory
+
+    - name: Import Inventory for MySQL in AWX
+      shell: awx-manage inventory_import --source=/tmp/inventory --inventory-name="MYSQL Inventory" 

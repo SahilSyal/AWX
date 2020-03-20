@@ -1,0 +1,31 @@
+[localhost]
+localhost ansible_connection=local
+
+[networkhosts]
+
+{{ master1 }} IP=192.168.1.210 hostname=mysql1.keenable.com
+{{ master2 }} IP=192.168.1.211 hostname=mysql2.keenable.com
+{{ slave }} IP=192.168.1.220 hostname=mysqlslave.keenable.com
+
+
+#[master1]
+#192.168.1.210
+
+#[master2]
+#192.168.1.211
+
+#[slave]
+#192.168.1.220
+
+#[mysql]
+#192.168.1.210 hostname=mysql1.keenable.com
+#192.168.1.211 hostname=mysql2.keenable.com
+#192.168.1.220 hostname=mysqlslave.keenable.com
+
+#[masters]
+#192.168.1.210 hostname=mysql1.keenable.com
+#192.168.1.211 hostname=mysql2.keenable.com
+
+#[foreman]
+#192.168.1.43
+
