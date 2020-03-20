@@ -34,4 +34,4 @@
         dest: /tmp/inventory
 
     - name: Import Inventory for MySQL in AWX
-      shell: awx-manage inventory_import --source=/tmp/inventory --inventory-name="MYSQL Inventory" 
+      shell: awx-manage inventory_import --source=/tmp/inventory --inventory-name="MySQL Inventory N/W Hosts" 
