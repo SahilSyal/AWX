@@ -33,5 +33,11 @@
         src: templates/inv
         dest: /tmp/inventory
 
-    - name: Import Inventory for MySQL in AWX
+    - name: Import Inventory for MySQL in AWX used for IP change
       shell: awx-manage inventory_import --source=/tmp/inventory --inventory-name="MySQL Inventory N/W Hosts" 
+   
+    - name: Change Inventory after setting new IPs
+      shell: sed -i 's/#//g' /tmp/inventory ; sed -i '/networkhosts/,+5d' /tmp/inventory
+
+    - name: Import Inventory for MySQL Cluster in AWX
+      shell: awx-manage inventory_import --source=/tmp/inventory --inventory-name="MySQL Inventory" 
